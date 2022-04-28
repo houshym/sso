@@ -1,0 +1,80 @@
+apiVersion: v1
+data:
+  oauth2_proxy.cfg: |-
+    provider = "oidc"
+    oidc_issuer_url="https://dev-82613542.okta.com/oauth2/aus3150f9ae0GXUgZ5d7"
+    redirect_url="https://mycompanyurl/oauth2/callback"
+    scope="openid email profile"
+    pass_host_header = true
+    reverse_proxy = true
+    auth_logging = true
+    cookie_httponly = true
+    cookie_refresh = "4m"
+    cookie_secure = false
+    pass_access_token = true
+    pass_authorization_header = true
+    pass_user_headers = true
+    request_logging = true
+    session_store_type = "cookie"
+    set_authorization_header = true
+    set_xauthrequest = true
+    silence_ping_logging = true
+    skip_provider_button = true
+    skip_auth_strip_headers = false
+    skip_jwt_bearer_tokens = true
+    ssl_insecure_skip_verify = true
+    standard_logging = true
+    whitelist_domains = [".mycompany.net"]
+    upstreams = [ "static://200" ]
+    email_domains = "*"
+    insecure_oidc_allow_unverified_email = true
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: oauth2-proxy
+    meta.helm.sh/release-namespace: oauth2-proxy
+  creationTimestamp: "2022-03-12T04:23:22Z"
+  labels:
+    app: oauth2-proxy
+    app.kubernetes.io/component: authentication-proxy
+    app.kubernetes.io/instance: oauth2-proxy
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: oauth2-proxy
+    app.kubernetes.io/part-of: oauth2-proxy
+    app.kubernetes.io/version: 7.2.0
+    helm.sh/chart: oauth2-proxy-6.2.0
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data: {}
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/part-of: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+    manager: helm
+    operation: Update
+    time: "2022-03-12T04:23:22Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        f:oauth2_proxy.cfg: {}
+    manager: kubectl-edit
+    operation: Update
+    time: "2022-03-14T20:13:29Z"
+  name: oauth2-proxy
+  namespace: oauth2-proxy
+  resourceVersion: "1334143"
+  uid: 091ec456-7dfc-4d20-8d1f-6f0fc52e89d6
