@@ -1,0 +1,66 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  annotations:
+    meta.helm.sh/release-name: stream-maanger
+    meta.helm.sh/release-namespace: stream-manager
+  creationTimestamp: "2022-03-11T21:27:52Z"
+  generation: 5
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  managedFields:
+  - apiVersion: networking.istio.io/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/managed-by: {}
+      f:spec:
+        .: {}
+        f:selector:
+          .: {}
+          f:istio: {}
+    manager: Go-http-client
+    operation: Update
+    time: "2022-03-11T21:27:52Z"
+  - apiVersion: networking.istio.io/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:servers: {}
+    manager: kubectl-edit
+    operation: Update
+    time: "2022-03-28T15:55:18Z"
+  name: sm-gw
+  namespace: istio-system
+  resourceVersion: "9762617"
+  uid: f930c0d5-809d-4804-9a76-3c7051cdd7cb
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - mydomain.com
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      credentialName: sm-tls-cert-dynamic
+      mode: SIMPLE
+  - hosts:
+    - mydomain.com
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+      
+      
+
