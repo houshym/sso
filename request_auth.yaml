@@ -1,0 +1,45 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  annotations:
+    meta.helm.sh/release-name: stream-maanger
+    meta.helm.sh/release-namespace: stream-manager
+  creationTimestamp: "2022-03-28T16:56:18Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  managedFields:
+  - apiVersion: security.istio.io/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/managed-by: {}
+      f:spec:
+        .: {}
+        f:jwtRules: {}
+        f:selector:
+          .: {}
+          f:matchLabels:
+            .: {}
+            f:istio: {}
+    manager: Go-http-client
+    operation: Update
+    time: "2022-03-28T16:56:18Z"
+  name: ingress-ra
+  namespace: istio-system
+  resourceVersion: "9764692"
+  uid: d6fe09a6-108a-4a04-a218-1053a0161e43
+spec:
+  jwtRules:
+  - forwardOriginalToken: true
+    issuer: https://dev-82613542.okta.com/oauth2/aus3150f9ae0GXUgZ5d7
+    jwksUri: https://dev-82613542.okta.com/oauth2/aus3150f9ae0GXUgZ5d7/v1/keys
+  selector:
+    matchLabels:
+      istio: ingressgateway
