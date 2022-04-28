@@ -1,0 +1,59 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  annotations:
+    meta.helm.sh/release-name: stream-maanger
+    meta.helm.sh/release-namespace: stream-manager
+  creationTimestamp: "2022-03-28T16:56:17Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  managedFields:
+  - apiVersion: security.istio.io/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/managed-by: {}
+      f:spec:
+        .: {}
+        f:action: {}
+        f:provider:
+          .: {}
+          f:name: {}
+        f:rules: {}
+        f:selector:
+          .: {}
+          f:matchLabels:
+            .: {}
+            f:app: {}
+    manager: Go-http-client
+    operation: Update
+    time: "2022-03-28T16:56:17Z"
+  name: ingress-authpolicy
+  namespace: istio-system
+  resourceVersion: "9764687"
+  uid: 761dd627-d64f-4b02-a59d-fa5ab0e1cfe0
+spec:
+  action: CUSTOM
+  provider:
+    name: oauth2-proxy
+  rules:
+  - to:
+    - operation:
+        notPaths:
+        - /oauth2/*
+        - /auth/*
+        - /srs
+        - /listener
+        - /1.0/direct/api
+        - /1.0/direct/router                                                                                                                                                               │
+        - /1.0/streams/*
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
