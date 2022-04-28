@@ -1,0 +1,79 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  annotations:
+    meta.helm.sh/release-name: stream-maanger
+    meta.helm.sh/release-namespace: stream-manager
+  creationTimestamp: "2022-03-11T21:27:52Z"
+  generation: 5
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  managedFields:
+  - apiVersion: networking.istio.io/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/managed-by: {}
+      f:spec:
+        .: {}
+        f:gateways: {}
+        f:http: {}
+    manager: Go-http-client
+    operation: Update
+    time: "2022-03-11T21:27:52Z"
+  - apiVersion: networking.istio.io/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:hosts: {}
+    manager: kubectl-edit
+    operation: Update
+    time: "2022-03-28T15:54:41Z"
+  name: sm-vs
+  namespace: stream-manager
+  resourceVersion: "9762754"
+  uid: 05c8ea83-af3f-435f-9343-fbaba45faeb8
+spec:
+  gateways:
+  - istio-system/sm-gw
+  hosts:
+  - sm-lab.qa.skyline.local
+  http:
+  - match:
+    - uri:
+        prefix: /oauth2
+    name: oauth2
+    route:
+    - destination:
+        host: oauth2-proxy.oauth2-proxy.svc.cluster.local
+  - match:
+    - uri:
+        prefix: /srs
+    name: sfs-ts-connection
+    rewrite:
+      uri: /status
+    route:
+    - destination:
+        host: srs-svc
+  - corsPolicy:
+      allowOrigin:
+      - http://mydomain/1.0/direct/router
+      - https://mydomain
+    route:
+    - destination:
+        host: my-service
+        port:
+          number: 80
+        subset: v1
+      headers:
+        request:
+          set:
+            Access-Control-Allow-Origin: '*'
+            x-forwarded-proto: https
+      weight: 100
