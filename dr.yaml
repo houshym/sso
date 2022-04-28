@@ -1,0 +1,260 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: sm-dr
+  annotations:
+    meta.helm.sh/release-name: stream-maanger
+    meta.helm.sh/release-namespace: stream-manager
+#    key: string
+  creationTimestamp: '2022-03-11T21:27:52Z'
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: Helm
+#    key: string
+  namespace: stream-manager
+  resourceVersion: '18903'
+  uid: 7d601beb-36a6-4a80-b838-4b38a002c5e1
+  fields:
+    - sm-dr
+    - stream-manager.stream-manager.svc.cluster.local
+    - 47d
+spec:
+  host: stream-manager.stream-manager.svc.cluster.local
+  subsets:
+    - labels:
+        app: stream-manager
+        version: v1
+      name: v1
+#    - labels:
+#        key: string
+#      name: string
+#      trafficPolicy:
+#        connectionPool:
+#          http:
+#            h2UpgradePolicy: string
+#            http1MaxPendingRequests: int
+#            http2MaxRequests: int
+#            idleTimeout: string
+#            maxRequestsPerConnection: int
+#            maxRetries: int
+#            useClientProtocol: boolean
+#          tcp:
+#            connectTimeout: string
+#            maxConnections: int
+#            tcpKeepalive:
+#              interval: string
+#              probes: int
+#              time: string
+#        loadBalancer:
+#          consistentHash:
+#            httpCookie:
+#              name: string
+#              path: string
+#              ttl: string
+#            httpHeaderName: string
+#            httpQueryParameterName: string
+#            minimumRingSize: int
+#            useSourceIp: boolean
+#          localityLbSetting:
+#            distribute:
+#              - from: string
+#                to:
+#                  key: int
+#            enabled: boolean
+#            failover:
+#              - from: string
+#                to: string
+#          simple: string
+#        outlierDetection:
+#          baseEjectionTime: string
+#          consecutive5xxErrors: int
+#          consecutiveErrors: int
+#          consecutiveGatewayErrors: int
+#          consecutiveLocalOriginFailures: int
+#          interval: string
+#          maxEjectionPercent: int
+#          minHealthPercent: int
+#          splitExternalLocalOriginErrors: boolean
+#        portLevelSettings:
+#          - connectionPool:
+#              http:
+#                h2UpgradePolicy: string
+#                http1MaxPendingRequests: int
+#                http2MaxRequests: int
+#                idleTimeout: string
+#                maxRequestsPerConnection: int
+#                maxRetries: int
+#                useClientProtocol: boolean
+#              tcp:
+#                connectTimeout: string
+#                maxConnections: int
+#                tcpKeepalive:
+#                  interval: string
+#                  probes: int
+#                  time: string
+#            loadBalancer:
+#              consistentHash:
+#                httpCookie:
+#                  name: string
+#                  path: string
+#                  ttl: string
+#                httpHeaderName: string
+#                httpQueryParameterName: string
+#                minimumRingSize: int
+#                useSourceIp: boolean
+#              localityLbSetting:
+#                distribute:
+#                  - from: string
+#                    to:
+#                      key: int
+#                enabled: boolean
+#                failover:
+#                  - from: string
+#                    to: string
+#              simple: string
+#            outlierDetection:
+#              baseEjectionTime: string
+#              consecutive5xxErrors: int
+#              consecutiveErrors: int
+#              consecutiveGatewayErrors: int
+#              consecutiveLocalOriginFailures: int
+#              interval: string
+#              maxEjectionPercent: int
+#              minHealthPercent: int
+#              splitExternalLocalOriginErrors: boolean
+#            port:
+#              number: int
+#            tls:
+#              caCertificates: string
+#              clientCertificate: string
+#              credentialName: string
+#              mode: string
+#              privateKey: string
+#              sni: string
+#              subjectAltNames:
+#                - string
+#        tls:
+#          caCertificates: string
+#          clientCertificate: string
+#          credentialName: string
+#          mode: string
+#          privateKey: string
+#          sni: string
+#          subjectAltNames:
+#            - string
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+#      consistentHash:
+#        httpCookie:
+#          name: string
+#          path: string
+#          ttl: string
+#        httpHeaderName: string
+#        httpQueryParameterName: string
+#        minimumRingSize: int
+#        useSourceIp: boolean
+#      localityLbSetting:
+#        distribute:
+#          - from: string
+#            to:
+#              key: int
+#        enabled: boolean
+#        failover:
+#          - from: string
+#            to: string
+    tls:
+      mode: ISTIO_MUTUAL
+#      caCertificates: string
+#      clientCertificate: string
+#      credentialName: string
+#      privateKey: string
+#      sni: string
+#      subjectAltNames:
+#        - string
+#    connectionPool:
+#      http:
+#        h2UpgradePolicy: string
+#        http1MaxPendingRequests: int
+#        http2MaxRequests: int
+#        idleTimeout: string
+#        maxRequestsPerConnection: int
+#        maxRetries: int
+#        useClientProtocol: boolean
+#      tcp:
+#        connectTimeout: string
+#        maxConnections: int
+#        tcpKeepalive:
+#          interval: string
+#          probes: int
+#          time: string
+#    outlierDetection:
+#      baseEjectionTime: string
+#      consecutive5xxErrors: int
+#      consecutiveErrors: int
+#      consecutiveGatewayErrors: int
+#      consecutiveLocalOriginFailures: int
+#      interval: string
+#      maxEjectionPercent: int
+#      minHealthPercent: int
+#      splitExternalLocalOriginErrors: boolean
+#    portLevelSettings:
+#      - connectionPool:
+#          http:
+#            h2UpgradePolicy: string
+#            http1MaxPendingRequests: int
+#            http2MaxRequests: int
+#            idleTimeout: string
+#            maxRequestsPerConnection: int
+#            maxRetries: int
+#            useClientProtocol: boolean
+#          tcp:
+#            connectTimeout: string
+#            maxConnections: int
+#            tcpKeepalive:
+#              interval: string
+#              probes: int
+#              time: string
+#        loadBalancer:
+#          consistentHash:
+#            httpCookie:
+#              name: string
+#              path: string
+#              ttl: string
+#            httpHeaderName: string
+#            httpQueryParameterName: string
+#            minimumRingSize: int
+#            useSourceIp: boolean
+#          localityLbSetting:
+#            distribute:
+#              - from: string
+#                to:
+#                  key: int
+#            enabled: boolean
+#            failover:
+#              - from: string
+#                to: string
+#          simple: string
+#        outlierDetection:
+#          baseEjectionTime: string
+#          consecutive5xxErrors: int
+#          consecutiveErrors: int
+#          consecutiveGatewayErrors: int
+#          consecutiveLocalOriginFailures: int
+#          interval: string
+#          maxEjectionPercent: int
+#          minHealthPercent: int
+#          splitExternalLocalOriginErrors: boolean
+#        port:
+#          number: int
+#        tls:
+#          caCertificates: string
+#          clientCertificate: string
+#          credentialName: string
+#          mode: string
+#          privateKey: string
+#          sni: string
+#          subjectAltNames:
+#            - string
+#  exportTo:
+#    - string
